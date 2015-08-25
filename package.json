@@ -1,0 +1,32 @@
+{
+  "name": "chat-app",
+  "version": "0.0.1",
+  "description": "this is a simple chat app. inspired by socket.io",
+  "main": "server.js",
+  
+  "scripts": {
+    "init": "npm install",
+    "install": "bower install",
+    "start": "nodemon server.js",
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atiq1589/cahat-app.git"
+  },
+  "keywords": [
+    "chat",
+    "socket",
+    "angularjs"
+  ],
+  "author": "Md. Atiqul Islam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atiq1589/cahat-app/issues"
+  },
+  "homepage": "https://github.com/atiq1589/cahat-app#readme",
+  "dependencies": {
+    "express": "^4.10.2",
+    "nodemon": "^1.4.1"
+  }
+}
