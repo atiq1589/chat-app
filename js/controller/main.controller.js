@@ -29,8 +29,9 @@ angular.module('chat')
 			connect();
 		}
 		chatService.receive(function (msg) {
-			$scope.MessageList.push(msg);
 			console.log(msg);
+			$scope.MessageList.push(msg);
+			
 			$scope.$apply();
 		});
 		function leave() {

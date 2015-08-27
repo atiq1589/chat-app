@@ -4,92 +4,84 @@
 
 <head>
 	<title>Chahat app</title>
+	<meta name="viewport" content="initial-scal=1, maximum-scal=1, user-scalable=no" />
+	<link rel="stylesheet" href="/angular-material/angular-material.css">
 	<style>
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-		}
-		
-		body {
-			font: 13px Helvetica, Arial;
-		}
-		
-		form {
-			background: #000;
-			padding: 3px;
-			position: fixed;
-			bottom: 0;
-			width: 100%;
-		}
-		
-		form input {
-			border: 0;
-			padding: 10px;
-			width: 90%;
-			margin-right: .5%;
-		}
-		
-		form button {
-			width: 9%;
-			background: rgb(130, 255, 255);
-			border: none;
-			padding: 10px;
-		}
-		
-		#message {
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-		}
-		
-		#message li {
-			padding: 5px 10px;
-		}
-		
-		#message li:nth-child(odd) {
-			background: #eee;
+		.gridListdemoBasicUsage .gray {
+			background: #f5f5f5;
 		}
 	</style>
 </head>
 
 <body ng-app="chat" ng-cloak>
-	<div class="room" ng-controller="mainController">
-		User Name:
-		<input type="text" ng-model="UserName" placeholder="Guest">
+	<div ng-controller="mainController" layout="column" layout-fill layout-margin layout-padding>
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<md-button class="md-icon-button" aria-label="Settings">
+					<md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+				</md-button>
+				<h2>
+						<span>Chahat-App</span>
+					</h2>
+				<span flex></span>
+			</div>
+		</md-toolbar>
+		<div layout="row" flex layout-padding layout-margin>
+			<div flex="33" layout-fill  layout="column" layout-align="start start" class="md-whiteframe-z3">
+				<md-input-container>
+					<label>User Name</label>
+					<input type="text" ng-model="UserName">
+				</md-input-container>
+				<md-list>
+					<md-subheader class="md-no-sticky">Rooms</md-subheader>
 
-		<ul>
-
-			<li ng-repeat="room in Rooms">
-				<input ng-checked="SelectedRoom.id == room.id" type="radio" name="room" ng-model="SelectedRoom" ng-change="ChangeRoom(room)">
-				<label>{{room.name}}</label>
-			</li>
-		</ul>
-		<ul id="messageListBox" style="height:200px; overflow-y:scroll; max-width:460px">
-			<li ng-repeat="msg in MessageList track by $index">
-				{{msg.userName}} : {{msg.message}}
-			</li>
-		</ul>
-		<form ng-submit="send()">
-			<input ng-model="Message" autocomplete="off" type="text" />
-			<button type="submit">Send</button>
-		</form>
+					<md-radio-group ng-model="SelectedRoom" ng-change="ChangeRoom(SelectedRoom)">
+						<md-radio-button ng-value="room" name="radioRoom" ng-repeat="room in Rooms">{{room.name}}</md-radio-button>
+					</md-radio-group>
+				</md-list>
+			</div>
+			<div layout="column" layout-align="end start" layout-fill>
+				<md-content flex>
+					<md-list>
+						<md-list-item class="md-3-line" ng-repeat="msg in MessageList">
+							<span>{{msg.userName}}</span>
+							<div class="md-list-item-text">
+								{{msg.message}}
+							</div>
+						</md-list-item>
+					</md-list>
+				</md-content>
+				<form ng-submit="send()">
+					<div layout="row">
+						<md-input-container flex>
+							<label>Message</label>
+							<input ng-model="Message" autocomplete="off" type="text" />
+						</md-input-container>
+						<md-button class="md-raised" type="submit">Send</md-button>
+				</form>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 
 <!--<script src="/socket.io/socket.io.js"></script>-->
 <script src="/angular/angular.js"></script>
+<script src="/angular-aria/angular-aria.js"></script>
+<script src="/angular-animate/angular-animate.js"></script>
+<script src="/angular-material/angular-material.js"></script>
 <script src="/module/app.js"></script>
 <script src="/service/chat.service.js"></script>
 <script src="/controller/main.controller.js"></script>
+
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 
 <script>
-	window.setInterval(
-	function(){
-	$("#messageListBox").scrollTop($("#messageListBox")[0].scrollHeight);
-},100);
+	// 	window.setInterval(
+// 	function(){
+// 	$("#messageListBox").scrollTop($("#messageListBox")[0].scrollHeight);
+// },100);
 
 </script>
 
