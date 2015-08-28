@@ -40,10 +40,10 @@
 					</md-radio-group>
 				</md-list>
 			</div>
-			<div layout="column" layout-align="end start" layout-fill>
-				<md-content flex>
+			<div flex="66" layout="column" layout-align="end start" layout-fill class="md-whiteframe-z2">
+				<md-content layout-fill flex>
 					<md-list>
-						<md-list-item class="md-3-line" ng-repeat="msg in MessageList">
+						<md-list-item class="md-1-line" ng-repeat="msg in MessageList">
 							<span>{{msg.userName}}</span>
 							<div class="md-list-item-text">
 								{{msg.message}}
@@ -51,13 +51,13 @@
 						</md-list-item>
 					</md-list>
 				</md-content>
-				<form ng-submit="send()">
+				<form ng-submit="send()" style="width:100%;" >
 					<div layout="row">
 						<md-input-container flex>
 							<label>Message</label>
 							<input ng-model="Message" autocomplete="off" type="text" />
 						</md-input-container>
-						<md-button class="md-raised" type="submit">Send</md-button>
+						<md-button class="md-raised" type="submit" style="height:45px">Send</md-button>
 				</form>
 				</div>
 			</div>
