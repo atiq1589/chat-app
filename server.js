@@ -10,8 +10,17 @@ var rootDir = __dirname;
 
 app.use(express.static('bower_components'));
 app.use(express.static('js'));
+var nameSpace = "";
 app.get('/', function(req, res){
-	
+	console.log(req.headers.host);
+	// nameSpace = "/";
+	// var domain = req.headers.host.split('.');
+	// domain.forEach(function (part){
+	// 	nameSpace += part;
+	// });
+	var pattern = /[^a-z0-9]/g;
+	nameSpace = req.headers.host.replace(pattern, '');
+	console.log(nameSpace);
 	res.sendFile(rootDir + '/index.html');
 });
 
@@ -34,29 +43,29 @@ var redis = require('socket.io-redis');
 
  io.adapter(redis({ host: redis_host, port: redis_port }));
 
-io.sockets.on('connection', function(socket){
-	console.log('a user connect');
+io.on('connection', function(socket){
+	console.log('a user connect at #' + nameSpace);
 	socket.on('chat', function(msg){
-		console.log('User: ' + msg.userName + ' Message ' + msg.message);
+		console.log('User: ' + msg.userName + ' nameSpace #' + nameSpace + ' Message ' + msg.message) ;
 		// io.emit('chat', msg);
-		socket.broadcast.to(msg.roomId).emit('chat', msg);
+		socket.broadcast.to(nameSpace + msg.roomId.toString()).emit('chat', msg);
 	});
 	socket.on('connectRoom', function(obj){
-		socket.join(obj.roomId);
+		socket.join(nameSpace + obj.roomId.toString());
 		if(obj.roomId == 1){
-			socket.join(2);
-			socket.join(3);
-			socket.join(4);
+			socket.join(nameSpace +'2'.toString());
+			socket.join(nameSpace +'3'.toString());
+			socket.join(nameSpace +'4'.toString());
 			console.log('Admin Join');
 		}
 		console.log('User: ' + obj.userName + ' Join Room# ' + obj.roomId);
 	});
 	socket.on('leaveRoom', function(obj){
-		socket.leave(obj.roomId);
+		socket.leave(nameSpace +obj.roomId.toString());
 		if(obj.roomId == 1){
-			socket.leave(2);
-			socket.leave(3);
-			socket.leave(4);
+			socket.leave(nameSpace +'2'.toString());
+			socket.leave(nameSpace +'3'.toString());
+			socket.leave(nameSpace +'4'.toString());
 			console.log('Admin Leave');
 		}
 		console.log('User: ' + obj.userName + ' Leave Room# ' + obj.roomId);

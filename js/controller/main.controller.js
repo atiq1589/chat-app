@@ -58,6 +58,7 @@ angular.module('chat')
 		}
 		connect();
 		$scope.send = function () {
+			
 			var userName = $scope.UserName;
 			if (userName.length == 0)
 				userName = 'Guest';
@@ -66,8 +67,10 @@ angular.module('chat')
 				userName: userName,
 				message: $scope.Message
 			}
-
+			
 			chatService.send(msgObj);
+			msgObj.userName = 'Me';
+			$scope.MessageList.push(msgObj);
 			$scope.Message = "";
 		}
 	}]);
