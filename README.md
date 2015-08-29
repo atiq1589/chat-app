@@ -1,8 +1,5 @@
 # Overview
-	    This is a simple chat app. This app is created with help of [socket.io](socket.io), 
-		[redis-server](http://redis.io/), socket.io-redis, 
-		[nodejs](https://nodejs.org/),  [angularjs](https://angular.io/) and 
-		[angular-material](https://material.angularjs.org/latest/#/).
+This is a simple chat app. This app is created with help of [socket.io](socket.io), [redis-server](http://redis.io/), socket.io-redis, [nodejs](https://nodejs.org/),  [angularjs](https://angular.io/) and [angular-material](https://material.angularjs.org/latest/#/).
 	
 # Setup App Environment
 ## Component Installation
@@ -28,7 +25,6 @@
 	 it will automatically start the server using nodemon.
 	
 	IF YOU ARE USING LOAD BALANCING USING NGINX BELOW IS A SAMPLE .conf file
-		```
 		upstream chat {
 			# ip_hash;
 			#server chat.vagrant;
@@ -52,4 +48,3 @@
 			}
 		
 		}
-	```
