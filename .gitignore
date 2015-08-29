@@ -3,3 +3,4 @@ typings/
 *.log
 node_modules/
 bower_components/
+redis-serverV3.0.3/
