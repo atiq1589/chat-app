@@ -1,5 +1,5 @@
 # Overview
-This is a simple chat app. This app is created with help of [socket.io](socket.io), [redis-server](http://redis.io/), socket.io-redis, [nodejs](https://nodejs.org/),  [angularjs](https://angular.io/) and [angular-material](https://material.angularjs.org/latest/#/).
+This is a simple chat app. This app is created with help of [socket.io](http://socket.io), [redis-server](http://redis.io/), socket.io-redis, [nodejs](https://nodejs.org/),  [angularjs](https://angular.io/) and [angular-material](https://material.angularjs.org/latest/#/).
 	
 # Setup App Environment
 ## Component Installation
