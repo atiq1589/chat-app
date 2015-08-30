@@ -41,8 +41,8 @@
 				</md-list>
 			</div>
 			<div flex="66" layout="column" layout-align="end start" layout-fill class="md-whiteframe-z2">
-				<md-content layout-fill flex>
-					<md-list>
+				<md-content layout-fill flex id="messageListBox">
+					<md-list style="max-height: calc(100vh - 276px)" >
 						<md-list-item class="md-2-line" ng-repeat="msg in MessageList">
 							<span>{{msg.userName}}</span>
 							<div class="md-list-item-text">
@@ -78,10 +78,17 @@
 <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 
 <script>
-	// 	window.setInterval(
-// 	function(){
-// 	$("#messageListBox").scrollTop($("#messageListBox")[0].scrollHeight);
-// },100);
+	$(document).ready(function(){
+		console.log($("#messageListBox"));
+		window.setInterval(
+	function(){
+		// alert("ASD");
+		if($("md-list md-list-item")[0])
+			$("#messageListBox").scrollTop( ($("md-list md-list-item")[0].scrollHeight || 0) * $('md-list md-list-item').length || 0);
+ },100);
+	});
+	
+		
 
 </script>
 
