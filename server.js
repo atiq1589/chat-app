@@ -1,10 +1,12 @@
 var express = require('express');
 var app = require('express')();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
-
+//var io = require('socket.io')(http);
+// var server = require('http').createServer(app);
 var port = process.env.PORT ||  4000;
 var rootDir = __dirname;
+
+
 
 app.use(express.static('bower_components'));
 app.use(express.static('js'));
@@ -15,7 +17,24 @@ app.get('/', function(req, res){
 
 
 
-io.on('connection', function(socket){
+
+
+var server = app.listen(port, function(){
+	console.log('server running on PORT#' + port);
+	
+});
+
+var redis_server_adderss = process.env.Redis || ":";
+var redis_host = redis_server_adderss.split(':')[0]  || '127.0.0.1';
+var redis_port = redis_server_adderss.split(':')[1]  || '6379';
+
+var io = require('socket.io')(server);
+var redis = require('socket.io-redis');
+// have to common redis-server running on port 6379 if you want to load balance between defferent  os
+
+ io.adapter(redis({ host: redis_host, port: redis_port }));
+
+io.sockets.on('connection', function(socket){
 	console.log('a user connect');
 	socket.on('chat', function(msg){
 		console.log('User: ' + msg.userName + ' Message ' + msg.message);
@@ -45,9 +64,4 @@ io.on('connection', function(socket){
 	socket.on('disconnect', function(){
 		console.log('user disconnect');
 	});
-})
-
-http.listen(port, function(){
-	console.log('server running on PORT#' + port);
-	
 })
