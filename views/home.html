@@ -1,0 +1,36 @@
+<div layout="row" flex layout-padding layout-margin>
+	<div flex="33" layout-fill layout="column" layout-align="start start" class="md-whiteframe-z3">
+		<md-input-container>
+			<label>User Name</label>
+			<input type="text" ng-model="UserName">
+		</md-input-container>
+		<md-list>
+			<md-subheader class="md-no-sticky">Rooms</md-subheader>
+
+			<md-radio-group ng-model="SelectedRoom" ng-change="ChangeRoom(SelectedRoom)">
+				<md-radio-button ng-value="room" name="radioRoom" ng-repeat="room in Rooms">{{room.name}}</md-radio-button>
+			</md-radio-group>
+		</md-list>
+	</div>
+	<div flex="66" layout="column" layout-align="end start" layout-fill class="md-whiteframe-z2">
+		<md-content layout-fill flex>
+			<md-list>
+				<md-list-item class="md-2-line" ng-repeat="msg in MessageList">
+					<span>{{msg.userName}}</span>
+					<div class="md-list-item-text">
+						{{msg.message}}
+					</div>
+				</md-list-item>
+			</md-list>
+		</md-content>
+		<form ng-submit="send()" style="width:100%;">
+			<div layout="row">
+				<md-input-container flex>
+					<label>Message</label>
+					<input ng-model="Message" autocomplete="off" type="text" />
+				</md-input-container>
+				<md-button class="md-raised" type="submit" style="height:45px">Send</md-button>
+		</form>
+		</div>
+	</div>
+</div>

@@ -1,5 +1,3 @@
-
-
 angular.module('chat').service('chatService', [function () {
 	var socket = io();
 

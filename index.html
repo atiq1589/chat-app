@@ -4,8 +4,10 @@
 
 <head>
 	<title>Chahat app</title>
-	<meta name="viewport" content="initial-scal=1, maximum-scal=1, user-scalable=no" />
+	<!--<meta name="viewport" content="initial-scal=1, maximum-scal=1, user-scalable=no" />-->
+	<meta name="viewport" content="initial-scale=1" />
 	<link rel="stylesheet" href="/angular-material/angular-material.css">
+	<base href="/">
 	<style>
 		.gridListdemoBasicUsage .gray {
 			background: #f5f5f5;
@@ -21,58 +23,30 @@
 					<md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
 				</md-button>
 				<h2>
-						<span>Chahat-App</span>
+					<a href="/">Chat-App</a>
 					</h2>
+					<a href="/registration">Register</a>
 				<span flex></span>
 			</div>
 		</md-toolbar>
-		<div layout="row" flex layout-padding layout-margin>
-			<div flex="33" layout-fill  layout="column" layout-align="start start" class="md-whiteframe-z3">
-				<md-input-container>
-					<label>User Name</label>
-					<input type="text" ng-model="UserName">
-				</md-input-container>
-				<md-list>
-					<md-subheader class="md-no-sticky">Rooms</md-subheader>
-
-					<md-radio-group ng-model="SelectedRoom" ng-change="ChangeRoom(SelectedRoom)">
-						<md-radio-button ng-value="room" name="radioRoom" ng-repeat="room in Rooms">{{room.name}}</md-radio-button>
-					</md-radio-group>
-				</md-list>
-			</div>
-			<div flex="66" layout="column" layout-align="end start" layout-fill class="md-whiteframe-z2">
-				<md-content layout-fill flex>
-					<md-list>
-						<md-list-item class="md-2-line" ng-repeat="msg in MessageList">
-							<span>{{msg.userName}}</span>
-							<div class="md-list-item-text">
-								{{msg.message}}
-							</div>
-						</md-list-item>
-					</md-list>
-				</md-content>
-				<form ng-submit="send()" style="width:100%;" >
-					<div layout="row">
-						<md-input-container flex>
-							<label>Message</label>
-							<input ng-model="Message" autocomplete="off" type="text" />
-						</md-input-container>
-						<md-button class="md-raised" type="submit" style="height:45px">Send</md-button>
-				</form>
-				</div>
-			</div>
-		</div>
+		<div ng-view></div>
+		
 	</div>
 </body>
 
 <!--<script src="/socket.io/socket.io.js"></script>-->
 <script src="/angular/angular.js"></script>
-<script src="/angular-aria/angular-aria.js"></script>
 <script src="/angular-animate/angular-animate.js"></script>
+<script src="/angular-aria/angular-aria.js"></script>
 <script src="/angular-material/angular-material.js"></script>
+<script src="/angular-route/angular-route.js"></script>
 <script src="/module/app.js"></script>
 <script src="/service/chat.service.js"></script>
 <script src="/controller/main.controller.js"></script>
+
+<script src="/route/home.route.js"></script>
+<script src="/route/registration.route.js"></script>
+<script src="/route/404.route.js"></script>
 
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>

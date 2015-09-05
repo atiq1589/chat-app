@@ -10,7 +10,8 @@ var rootDir = __dirname;
 
 app.use(express.static('bower_components'));
 app.use(express.static('js'));
-app.get('/', function(req, res){
+app.use(express.static('views'));
+app.get('/*', function(req, res){
 	
 	res.sendFile(rootDir + '/index.html');
 });

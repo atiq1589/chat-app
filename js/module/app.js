@@ -1,1 +1,1 @@
-angular.module('chat', ['ngMaterial']);
+angular.module('chat', ['ngRoute','ngMaterial']);
