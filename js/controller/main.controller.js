@@ -1,5 +1,5 @@
 angular.module('chat')
-	.controller('mainController', ['$scope', 'chatService', function ($scope, chatService) {
+	.controller('MainCtrl', ['$scope', 'chatService', function ($scope, chatService) {
 		$scope.Rooms = [
 			{
 				id: 1,
