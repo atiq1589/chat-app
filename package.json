@@ -27,6 +27,7 @@
   "dependencies": {
     "bower": "^1.5.2",
     "express": "^4.10.2",
+    "mongodb": "^2.0.42",
     "nodemon": "^1.4.1",
     "socket.io-redis": "^0.1.4"
   }
